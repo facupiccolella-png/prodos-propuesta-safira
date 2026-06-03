@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta SAFIRA — PRODOS Marketing Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-main: #8B5CF6;
+    --purple-light: #A78BFA;
+    --purple-dark: #4C1D95;
+    --purple-mid: #6D28D9;
+    --purple-logo-dark: #3D1A5C;
+    --white: #FFFFFF;
+    --off-white: #F5F3FF;
+    --text-dark: #1C0A3B;
+    --text-mid: #4B3068;
+    --accent: #C4B5FD;
+    --nomika: #10B981;
+    --logistica: #F97316;
+    --nomika-soft: rgba(16,185,129,0.15);
+    --logistica-soft: rgba(249,115,22,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--purple-dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 48px;
+    background: rgba(76, 29, 149, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(167,139,250,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+
+  .nav-dot.active {
+    background: var(--white);
+    transform: scale(1.3);
+  }
+
+  /* ===== SLIDE SYSTEM ===== */
+  .slide {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0 60px;
+  }
+
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* ===== SLIDE 1: PORTADA ===== */
+  #slide-1 {
+    background: linear-gradient(135deg, #3D1A5C 0%, #6D28D9 50%, #8B5CF6 100%);
+    align-items: center;
+    text-align: center;
+  }
+
+  #slide-1 .deco1 { width:600px;height:600px;top:-150px;right:-150px;background:rgba(167,139,250,0.12);border:2px solid rgba(167,139,250,0.2); }
+  #slide-1 .deco2 { width:300px;height:300px;bottom:-80px;left:-80px;background:rgba(167,139,250,0.08);border:2px solid rgba(167,139,250,0.15); }
+
+  .slide-1-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .tag-chip {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+
+  .slide-1-inner h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 78px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .slide-1-inner h1 em { font-style:normal; color:var(--accent); }
+
+  .slide-1-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    margin-bottom: 48px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .prodos-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 1px;
+  }
+
+  .prodos-text-logo { font-weight:700; font-size:15px; color:var(--white); letter-spacing:2px; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.5;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint span { font-size:11px; letter-spacing:2px; text-transform:uppercase; }
+  @keyframes bounce {
+    0%,100% { transform:translateX(-50%) translateY(0); }
+    50% { transform:translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== SLIDE CONTENT ===== */
+  .slide-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--purple-main);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before { content:''; display:block; width:32px; height:2px; background:var(--purple-main); }
+  .section-label.white-label { color:var(--accent); }
+  .section-label.white-label::before { background:var(--accent); }
+
+  h2.slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 50px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 40px;
+    color: var(--text-dark);
+  }
+  h2.slide-title.white { color: var(--white); }
+
+  /* ===== SLIDE 2: VISIÓN GENERAL (fondo claro) ===== */
+  #slide-2 { background: var(--off-white); color: var(--text-dark); }
+  #slide-2 .deco1 { width:600px;height:600px;top:-200px;right:-200px;background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.08); }
+
+  .objective-box {
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 100%);
+    border-radius: 24px;
+    padding: 48px 52px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .objective-box::before {
+    content: '"';
+    position: absolute; top:-20px; left:30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 180px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+  .objective-box p { font-size:clamp(16px,2vw,21px); line-height:1.7; font-weight:300; position:relative; z-index:1; }
+  .objective-box strong { color:var(--accent); font-weight:600; }
+
+  /* ===== SLIDE 3: NOMIKA vs LOGISTICA (oscuro) ===== */
+  #slide-3 { background: linear-gradient(160deg, #3D1A5C 0%, #5B21B6 100%); }
+  #slide-3 .deco1 { width:500px;height:500px;bottom:-150px;left:-100px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.15); }
+
+  .dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .dual-card {
+    border-radius: 20px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .dual-card:hover { transform: translateY(-5px); }
+
+  .dual-card.nomika {
+    background: rgba(16,185,129,0.12);
+    border: 1px solid rgba(16,185,129,0.35);
+  }
+  .dual-card.logistica {
+    background: rgba(249,115,22,0.12);
+    border: 1px solid rgba(249,115,22,0.35);
+  }
+
+  .dual-card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .dual-card.nomika .dual-card-tag { background: rgba(16,185,129,0.2); color: #6EE7B7; }
+  .dual-card.logistica .dual-card-tag { background: rgba(249,115,22,0.2); color: #FDBA74; }
+
+  .dual-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--white);
+  }
+
+  .dual-card p { font-size:14px; color:rgba(255,255,255,0.75); line-height:1.65; margin-bottom:18px; }
+
+  .dual-card-goal {
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+  }
+  .dual-card-goal strong { display:block; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .dual-card.nomika .dual-card-goal strong { color:#6EE7B7; }
+  .dual-card.logistica .dual-card-goal strong { color:#FDBA74; }
+
+  /* ===== SLIDE 4: CANALES (claro) ===== */
+  #slide-4 { background: var(--off-white); color: var(--text-dark); }
+  #slide-4 .deco1 { width:400px;height:400px;top:50px;right:-100px;background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.08); }
+
+  .channels-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .channel-col {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 20px rgba(109,40,217,0.07);
+    border-top: 4px solid transparent;
+    transition: transform 0.3s;
+  }
+  .channel-col:hover { transform: translateY(-5px); }
+  .channel-col.nomika { border-top-color: var(--nomika); }
+  .channel-col.logistica { border-top-color: var(--logistica); }
+
+  .channel-col-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .channel-col-title span {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .channel-col.nomika .channel-col-title span { background: var(--nomika); }
+  .channel-col.logistica .channel-col-title span { background: var(--logistica); }
+
+  .channel-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background: rgba(109,40,217,0.04);
+    border: 1px solid rgba(109,40,217,0.08);
+    transition: all 0.25s;
+  }
+  .channel-item:hover { background: rgba(109,40,217,0.08); }
+
+  .channel-icon { font-size:22px; flex-shrink:0; margin-top:2px; }
+
+  .channel-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+  .channel-text span { font-size:13px; color: var(--text-mid); }
+
+  .channel-priority {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: auto;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 3px;
+  }
+  .nomika .channel-priority.pri { background: rgba(16,185,129,0.15); color: #059669; }
+  .nomika .channel-priority.sec { background: rgba(16,185,129,0.08); color: #6EE7B7; }
+  .logistica .channel-priority.pri { background: rgba(249,115,22,0.15); color: #EA580C; }
+  .logistica .channel-priority.sec { background: rgba(249,115,22,0.08); color: #FDBA74; }
+
+  /* ===== SLIDE 5: PLAN (oscuro) ===== */
+  #slide-5 { background: linear-gradient(160deg, #2D0A5C 0%, #4C1D95 60%, #6D28D9 100%); }
+
+  .plan-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .plan-col {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+  }
+  .plan-col:hover { background: rgba(255,255,255,0.09); }
+
+  .plan-col-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .plan-col-title .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .plan-col.nomika .dot { background: var(--nomika); }
+  .plan-col.logistica .dot { background: var(--logistica); }
+
+  .phase-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .phase-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .phase-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .plan-col.nomika .phase-num { background: rgba(16,185,129,0.2); color: #6EE7B7; }
+  .plan-col.logistica .phase-num { background: rgba(249,115,22,0.2); color: #FDBA74; }
+
+  .phase-content {}
+  .phase-content h4 { font-size:15px; font-weight:600; color:var(--white); margin-bottom:5px; }
+  .phase-content p { font-size:13px; color:rgba(255,255,255,0.65); line-height:1.55; }
+
+  /* ===== SLIDE 6: PUBLICIDAD (claro) ===== */
+  #slide-6 { background: var(--off-white); color: var(--text-dark); }
+
+  .ads-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .ads-col {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(109,40,217,0.07);
+  }
+
+  .ads-col-header {
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ads-col.nomika .ads-col-header { background: linear-gradient(135deg, #065F46, #059669); }
+  .ads-col.logistica .ads-col-header { background: linear-gradient(135deg, #9A3412, #EA580C); }
+
+  .ads-col-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+  }
+  .ads-col-header-sub { font-size:12px; color:rgba(255,255,255,0.75); margin-top:2px; }
+
+  .ads-col-body { background: white; padding: 28px; }
+
+  .ads-platform {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .ads-platform:last-child { border-bottom: none; }
+  .ads-platform-icon { font-size: 24px; flex-shrink:0; }
+  .ads-platform-text strong { display:block; font-size:14px; font-weight:600; color:var(--text-dark); margin-bottom:2px; }
+  .ads-platform-text span { font-size:13px; color:var(--text-mid); line-height:1.5; }
+
+  .ads-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .ads-result-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+  .ads-col.nomika .ads-result-tag { background: rgba(16,185,129,0.1); color: #059669; }
+  .ads-col.logistica .ads-result-tag { background: rgba(249,115,22,0.1); color: #EA580C; }
+
+  /* ===== SLIDE 7: HONORARIOS (oscuro) ===== */
+  #slide-7 { background: linear-gradient(160deg, #2D0A5C 0%, #4C1D95 60%, #6D28D9 100%); }
+  #slide-7 .deco1 { width:500px;height:500px;top:-150px;right:-150px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08); }
+
+  .pricing-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .pricing-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 22px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .pricing-card:hover { background: rgba(255,255,255,0.11); }
+
+  .pricing-card-header {
+    padding: 24px 28px;
+  }
+  .pricing-card.nomika .pricing-card-header { background: rgba(16,185,129,0.18); border-bottom: 1px solid rgba(16,185,129,0.3); }
+  .pricing-card.logistica .pricing-card-header { background: rgba(249,115,22,0.18); border-bottom: 1px solid rgba(249,115,22,0.3); }
+
+  .pricing-card-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .pricing-card-header-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-top:4px; }
+
+  .pricing-card-body { padding: 28px; }
+
+  .pricing-list { list-style:none; margin-bottom:24px; }
+  .pricing-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.55;
+  }
+  .pricing-list li:last-child { border-bottom: none; }
+  .pricing-list li strong { color:var(--white); font-weight:600; }
+
+  .check-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-weight: 700;
+  }
+  .nomika .check-icon { background: rgba(16,185,129,0.25); color: #6EE7B7; }
+  .logistica .check-icon { background: rgba(249,115,22,0.25); color: #FDBA74; }
+
+  .pricing-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .pricing-card.nomika .pricing-amount { color: #6EE7B7; }
+  .pricing-card.logistica .pricing-amount { color: #FDBA74; }
+  .pricing-note { font-size:12px; color:rgba(255,255,255,0.45); font-style:italic; }
+
+  .pricing-extra {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .pricing-extra-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px; }
+  .pricing-extra-item { font-size:14px; color:rgba(255,255,255,0.75); margin-bottom:8px; }
+  .pricing-extra-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .pricing-card.nomika .pricing-extra-amount { color: #6EE7B7; }
+  .pricing-card.logistica .pricing-extra-amount { color: #FDBA74; }
+
+  /* ===== SLIDE 8: CIERRE ===== */
+  #slide-8 {
+    background: linear-gradient(135deg, #2D0A5C 0%, #4C1D95 40%, #8B5CF6 100%);
+    align-items: center;
+    text-align: center;
+  }
+  #slide-8 .deco1 { width:500px;height:500px;top:-100px;left:-150px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07); }
+  #slide-8 .deco2 { width:350px;height:350px;bottom:-100px;right:-80px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07); }
+
+  .close-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .close-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+  .close-inner p { font-size:18px; color:rgba(255,255,255,0.75); line-height:1.7; margin-bottom:48px; font-weight:300; }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--white);
+    color: var(--purple-dark);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    padding: 18px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  }
+  .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+
+  .footer-prodos { margin-top:60px; font-size:12px; color:rgba(255,255,255,0.4); letter-spacing:2px; text-transform:uppercase; }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    position: fixed; top:0; left:0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple-light), var(--accent));
+    transition: width 0.4s ease;
+    z-index: 200;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+  .fade-in-delay-1 { transition-delay:0.1s; }
+  .fade-in-delay-2 { transition-delay:0.2s; }
+  .fade-in-delay-3 { transition-delay:0.3s; }
+  .fade-in-delay-4 { transition-delay:0.4s; }
+  .fade-in-delay-5 { transition-delay:0.5s; }
+  .fade-in-delay-6 { transition-delay:0.6s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    .slide-content { padding: 0 24px; }
+    .dual-grid, .channels-dual, .plan-dual, .ads-dual, .pricing-dual { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-logo">PRODOS</div>
+  <div class="nav-dots" id="navDots">
+    <button class="nav-dot active" onclick="scrollToSlide(1)"></button>
+    <button class="nav-dot" onclick="scrollToSlide(2)"></button>
+    <button class="nav-dot" onclick="scrollToSlide(3)"></button>
+    <button class="nav-dot" onclick="scrollToSlide(4)"></button>
+    <button class="nav-dot" onclick="scrollToSlide(5)"></button>
+    <button class="nav-dot" onclick="scrollToSlide(6)"></button>
+    <button class="nav-dot" onclick="scrollToSlide(7)"></button>
+    <button class="nav-dot" onclick="scrollToSlide(8)"></button>
+  </div>
+</nav>
+
+<!-- SLIDE 1: PORTADA -->
+<section class="slide" id="slide-1">
+  <div class="deco-circle deco1"></div>
+  <div class="deco-circle deco2"></div>
+  <div class="slide-1-inner">
+    <div class="tag-chip fade-in">Propuesta Estratégica · 2026</div>
+    <h1 class="fade-in fade-in-delay-1">
+      Marketing Integral para<br><em>SAFIRA</em>
+    </h1>
+    <p class="slide-1-sub fade-in fade-in-delay-2">
+      Estrategia de marketing digital para posicionar NÓMIKA y Sistema Logístico en sus mercados objetivo
+    </p>
+    <div class="prodos-badge fade-in fade-in-delay-3">
+      <span>Presentado por</span>
+      <span class="prodos-text-logo">PRODOS</span>
+      <span style="opacity:0.5">|</span>
+      <span>Marketing Digital</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- SLIDE 2: VISIÓN -->
+<section class="slide" id="slide-2">
+  <div class="deco-circle deco1"></div>
+  <div class="slide-content">
+    <div class="section-label fade-in">01 · Visión y Objetivos</div>
+    <h2 class="slide-title fade-in fade-in-delay-1">¿Hacia dónde<br>vamos?</h2>
+    <div class="objective-box fade-in fade-in-delay-2">
+      <p>
+        Construir la <strong>presencia digital de los productos SAFIRA</strong> con estrategias diferenciadas para cada mercado — comunicando con claridad el valor de <strong>NÓMIKA</strong> a empresas que buscan profesionalizar sus RRHH, y posicionando el <strong>Sistema Logístico</strong> como solución de software a medida de clase mundial para multinacionales.
+      </p>
+    </div>
+
+    <div style="display:flex;gap:20px;margin-top:32px;flex-wrap:wrap;" class="fade-in fade-in-delay-3">
+      <div style="flex:1;min-width:200px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:16px;padding:24px 28px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#059669;margin-bottom:10px;">NÓMIKA</div>
+        <p style="font-size:15px;color:var(--text-dark);line-height:1.6;">Generar ventas entre empresas argentinas que buscan <strong>profesionalizar y ordenar sus procesos de RRHH</strong>.</p>
+      </div>
+      <div style="flex:1;min-width:200px;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.25);border-radius:16px;padding:24px 28px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#EA580C;margin-bottom:10px;">SISTEMA LOGÍSTICO</div>
+        <p style="font-size:15px;color:var(--text-dark);line-height:1.6;">Generar vinculación y ventas demostrando <strong>experiencia en software a medida de clase mundial</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: PRODUCTOS -->
+<section class="slide" id="slide-3">
+  <div class="deco-circle deco1"></div>
+  <div class="slide-content">
+    <div class="section-label white-label fade-in">02 · Los Productos</div>
+    <h2 class="slide-title white fade-in fade-in-delay-1">Dos productos,<br>dos mercados distintos</h2>
+    <div class="dual-grid">
+      <div class="dual-card nomika fade-in fade-in-delay-2">
+        <span class="dual-card-tag">RRHH · PYMES</span>
+        <h3>NÓMIKA</h3>
+        <p>Sistema de gestión de recursos humanos que conecta empleado, empresa y contador en una sola plataforma. Optimización de procesos, centralización y profesionalización de RRHH.</p>
+        <div class="dual-card-goal">
+          <strong>Valor principal</strong>
+          Optimización de procesos · Centralización · Profesionalización de RRHH en empresas PYMES argentinas
+        </div>
+      </div>
+      <div class="dual-card logistica fade-in fade-in-delay-3">
+        <span class="dual-card-tag">ENTERPRISE · MULTINACIONALES</span>
+        <h3>Sistema Logístico</h3>
+        <p>Solución de software a medida que optimiza la gestión de carga y distribución para empresas multinacionales. Experiencia probada, soluciones enterprise de alto nivel.</p>
+        <div class="dual-card-goal">
+          <strong>Valor principal</strong>
+          Software a medida · Expertise comprobado · Soluciones enterprise para multinacionales
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: CANALES -->
+<section class="slide" id="slide-4">
+  <div class="deco-circle deco1"></div>
+  <div class="slide-content">
+    <div class="section-label fade-in">03 · Canales Estratégicos</div>
+    <h2 class="slide-title fade-in fade-in-delay-1">¿Desde dónde<br>vamos a trabajar?</h2>
+    <div class="channels-dual">
+      <div class="channel-col nomika fade-in fade-in-delay-2">
+        <div class="channel-col-title"><span></span>NÓMIKA</div>
+        <div class="channel-item">
+          <div class="channel-icon">📱</div>
+          <div class="channel-text">
+            <strong>Instagram</strong>
+            <span>Construcción de narrativa, comunidad e identidad de marca</span>
+          </div>
+          <span class="channel-priority pri">Prioridad</span>
+        </div>
+        <div class="channel-item">
+          <div class="channel-icon">🌐</div>
+          <div class="channel-text">
+            <strong>Web</strong>
+            <span>Credibilidad, detalles del producto y conversión</span>
+          </div>
+          <span class="channel-priority sec">Complementario</span>
+        </div>
+        <div style="margin-top:20px;font-size:13px;color:var(--text-mid);line-height:1.6;">
+          <strong style="color:var(--text-dark);">Objetivo:</strong> Generar narrativa clara del problema-solución, construir comunidad de empresas interesadas y demostrar expertise real.
+        </div>
+      </div>
+      <div class="channel-col logistica fade-in fade-in-delay-3">
+        <div class="channel-col-title"><span></span>SISTEMA LOGÍSTICO</div>
+        <div class="channel-item">
+          <div class="channel-icon">🌐</div>
+          <div class="channel-text">
+            <strong>Web</strong>
+            <span>Portfolio, casos de estudio, demostraciones técnicas</span>
+          </div>
+          <span class="channel-priority pri">Prioridad</span>
+        </div>
+        <div class="channel-item">
+          <div class="channel-icon">💼</div>
+          <div class="channel-text">
+            <strong>LinkedIn</strong>
+            <span>Conexión con decisores y ejecutivos multinacionales</span>
+          </div>
+          <span class="channel-priority sec">Segundo</span>
+        </div>
+        <div class="channel-item">
+          <div class="channel-icon">📱</div>
+          <div class="channel-text">
+            <strong>Instagram</strong>
+            <span>Comunicación de marca corporativa y visibilidad general</span>
+          </div>
+          <span class="channel-priority sec">Complementario</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: PLAN -->
+<section class="slide" id="slide-5">
+  <div class="slide-content">
+    <div class="section-label white-label fade-in">04 · Plan de Acción</div>
+    <h2 class="slide-title white fade-in fade-in-delay-1">¿Qué vamos<br>a hacer?</h2>
+    <div class="plan-dual">
+      <div class="plan-col nomika fade-in fade-in-delay-2">
+        <div class="plan-col-title"><div class="dot"></div>NÓMIKA</div>
+        <div class="phase-item">
+          <div class="phase-num">1</div>
+          <div class="phase-content">
+            <h4>Narrativa & Reacción</h4>
+            <p>Crear contenido que resuene con empresas que buscan orden — problemas reales, soluciones claras en RRHH.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">2</div>
+          <div class="phase-content">
+            <h4>Identidad & Testimonios</h4>
+            <p>Refrescar identidad visual y publicar testimonios de clientes que han experimentado los beneficios de NÓMIKA.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">3</div>
+          <div class="phase-content">
+            <h4>Penetración & Posicionamiento</h4>
+            <p>Dominancia en Instagram + Web como referencia de RRHH profesional en Argentina.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">4</div>
+          <div class="phase-content">
+            <h4>Conexión & Conversión</h4>
+            <p>Convertir seguidores en empresas interesadas, interesados en clientes activos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="plan-col logistica fade-in fade-in-delay-3">
+        <div class="plan-col-title"><div class="dot"></div>SISTEMA LOGÍSTICO</div>
+        <div class="phase-item">
+          <div class="phase-num">1</div>
+          <div class="phase-content">
+            <h4>Web (Prioridad)</h4>
+            <p>Portfolio de proyectos, casos de estudio, testimonios de clientes, demostraciones de capacidad técnica.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">2</div>
+          <div class="phase-content">
+            <h4>LinkedIn</h4>
+            <p>Conectar con ejecutivos, compartir experiencia en proyectos, propuestas de valor para multinacionales.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">3</div>
+          <div class="phase-content">
+            <h4>Instagram</h4>
+            <p>Comunicación de marca corporativa, cultura de empresa, identidad y visibilidad general.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">4</div>
+          <div class="phase-content">
+            <h4>Meta & Google Ads</h4>
+            <p>Amplificar alcance y generar leads cualificados dirigidos a ejecutivos en logística y supply chain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: PUBLICIDAD -->
+<section class="slide" id="slide-6">
+  <div class="slide-content">
+    <div class="section-label fade-in">05 · Publicidad Pagada</div>
+    <h2 class="slide-title fade-in fade-in-delay-1">Meta Ads<br>& Google Ads</h2>
+    <div class="ads-dual">
+      <div class="ads-col nomika fade-in fade-in-delay-2">
+        <div class="ads-col-header">
+          <div>
+            <div class="ads-col-header-title">NÓMIKA</div>
+            <div class="ads-col-header-sub">Amplificar alcance · Generar leads cualificados</div>
+          </div>
+        </div>
+        <div class="ads-col-body">
+          <div class="ads-platform">
+            <div class="ads-platform-icon">📘</div>
+            <div class="ads-platform-text">
+              <strong>Meta Ads (Facebook e Instagram)</strong>
+              <span>Targeting específico por industria y tamaño de empresa</span>
+            </div>
+          </div>
+          <div class="ads-platform">
+            <div class="ads-platform-icon">🔍</div>
+            <div class="ads-platform-text">
+              <strong>Google Ads</strong>
+              <span>Búsqueda por palabras clave relacionadas a RRHH y nómina</span>
+            </div>
+          </div>
+          <div class="ads-results">
+            <span class="ads-result-tag">Leads cualificados</span>
+            <span class="ads-result-tag">Mayor conversión</span>
+            <span class="ads-result-tag">Visibilidad de marca</span>
+            <span class="ads-result-tag">ROI medible</span>
+          </div>
+        </div>
+      </div>
+      <div class="ads-col logistica fade-in fade-in-delay-3">
+        <div class="ads-col-header">
+          <div>
+            <div class="ads-col-header-title">SISTEMA LOGÍSTICO</div>
+            <div class="ads-col-header-sub">Conectar con ejecutivos · Generar reuniones</div>
+          </div>
+        </div>
+        <div class="ads-col-body">
+          <div class="ads-platform">
+            <div class="ads-platform-icon">💼</div>
+            <div class="ads-platform-text">
+              <strong>LinkedIn Ads (Plataforma preferente)</strong>
+              <span>Targeting por rol, industria y tamaño de empresa</span>
+            </div>
+          </div>
+          <div class="ads-platform">
+            <div class="ads-platform-icon">🔍</div>
+            <div class="ads-platform-text">
+              <strong>Google Ads</strong>
+              <span>Palabras clave: logística, supply chain, optimización</span>
+            </div>
+          </div>
+          <div class="ads-results">
+            <span class="ads-result-tag">Decisores calificados</span>
+            <span class="ads-result-tag">Casos de éxito</span>
+            <span class="ads-result-tag">Pipeline de clientes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: HONORARIOS -->
+<section class="slide" id="slide-7">
+  <div class="deco-circle deco1"></div>
+  <div class="slide-content">
+    <div class="section-label white-label fade-in">06 · Honorarios & Servicios</div>
+    <h2 class="slide-title white fade-in fade-in-delay-1">Propuesta de valor<br>y presupuesto</h2>
+    <div class="pricing-dual">
+      <div class="pricing-card nomika fade-in fade-in-delay-2">
+        <div class="pricing-card-header">
+          <div class="pricing-card-header-title">NÓMIKA</div>
+          <div class="pricing-card-header-sub">Servicios Mensuales</div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-list">
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>Estrategia y Gestión de Redes Sociales</strong><br>Instagram y LinkedIn</div>
+            </li>
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>14 Creativos mensuales</strong><br>Diseños, video, contenido</div>
+            </li>
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>Servicios Publicitarios</strong><br>Meta Ads y Google Ads</div>
+            </li>
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>Reporte Mensual</strong><br>Métricas, análisis y recomendaciones</div>
+            </li>
+          </ul>
+          <div class="pricing-amount">$900.000</div>
+          <div class="pricing-note">por mes — no incluye presupuesto de pauta</div>
+          <div class="pricing-extra">
+            <div class="pricing-extra-label">Servicio adicional (única vez)</div>
+            <div class="pricing-extra-item">📝 Redacción y Diseño de Sitio Web</div>
+            <div class="pricing-extra-amount">$150.000</div>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-card logistica fade-in fade-in-delay-3">
+        <div class="pricing-card-header">
+          <div class="pricing-card-header-title">SISTEMA LOGÍSTICO</div>
+          <div class="pricing-card-header-sub">Servicios Mensuales</div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-list">
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>Creación y Gestión de Redes Sociales</strong><br>LinkedIn e Instagram</div>
+            </li>
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>10 Creativos mensuales</strong><br>Contenido profesional y casos de estudio</div>
+            </li>
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>Servicios Publicitarios</strong><br>Meta Ads y Google Ads</div>
+            </li>
+            <li>
+              <div class="check-icon">✓</div>
+              <div><strong>Reporte Mensual</strong><br>Métricas, análisis y recomendaciones</div>
+            </li>
+          </ul>
+          <div class="pricing-amount">$750.000</div>
+          <div class="pricing-note">por mes — no incluye presupuesto de pauta</div>
+          <div class="pricing-extra">
+            <div class="pricing-extra-label">Servicio adicional (única vez)</div>
+            <div class="pricing-extra-item">📝 Redacción y Diseño de Sitio Web</div>
+            <div class="pricing-extra-amount">$150.000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: CIERRE -->
+<section class="slide" id="slide-8">
+  <div class="deco-circle deco1"></div>
+  <div class="deco-circle deco2"></div>
+  <div class="close-inner">
+    <div class="tag-chip fade-in" style="margin-bottom:28px;">Próximos pasos</div>
+    <h2 class="fade-in fade-in-delay-1">
+      El marketing que<br><em style="font-style:normal;color:var(--accent);">SAFIRA</em><br>necesita.
+    </h2>
+    <p class="fade-in fade-in-delay-2">
+      Estrategias diferenciadas para cada producto, cada mercado y cada audiencia — con presencia digital que genera resultados reales y medibles.
+    </p>
+    <a href="https://wa.link/5xohd2" class="cta-btn fade-in fade-in-delay-3">
+      Hablemos →
+    </a>
+    <div class="footer-prodos fade-in fade-in-delay-4">
+      PRODOS Marketing Digital · Mendoza
+    </div>
+  </div>
+</section>
+
+<script>
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  }
+
+  function updateNavDots() {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.nav-dot');
+    const scrollMid = window.scrollY + window.innerHeight / 2;
+    slides.forEach((slide, i) => {
+      const top = slide.offsetTop;
+      const bottom = top + slide.offsetHeight;
+      if (scrollMid >= top && scrollMid < bottom) {
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[i]) dots[i].classList.add('active');
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function scrollToSlide(n) {
+    const slide = document.getElementById('slide-' + n);
+    if (slide) slide.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  window.addEventListener('scroll', () => { updateProgress(); updateNavDots(); });
+
+  document.querySelectorAll('#slide-1 .fade-in').forEach(el => el.classList.add('visible'));
+</script>
+</body>
+</html>
